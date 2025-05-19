@@ -96,44 +96,40 @@
     <a href="./ticket.html" target="_blank" id="save"><button id="save">Generate My Ticket</button></a>
   </div>
   <script>
-    const image = document.getElementById('imageUpload')
-    const name = document.getElementById('name')
-    const email = document.getElementById('email')
-    const git = document.getElementById('git')
-    const save = document.getElementById('save')
+    const image = document.getElementById('imageUpload');
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const git = document.getElementById('git');
+    const save = document.getElementById('save');
+
     save.addEventListener('click', function () {
       const userName = name.value;
       const userEmail = email.value;
       const userGit = git.value;
+
       if (!userName || !userEmail || !userGit) {
         alert("Please fill out all fields!");
         return;
       }
-      save.addEventListener('click', function () {
 
-        const userName = name.value;
-        const userEmail = email.value;
-        const userGit = git.value;
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('userEmail', userEmail);
+      localStorage.setItem('userGit', userGit);
 
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('userEmail', userEmail);
-        localStorage.setItem('userGit', userGit);
+      if (image.files.length > 0) {
+        const file = image.files[0];
+        const reader = new FileReader();
 
-        if (image.files.length > 0) {
-          const file = image.files[0];
-          const reader = new FileReader();
+        reader.onload = function () {
+          const base64Image = reader.result;
+          localStorage.setItem('userImage', base64Image);
+        };
 
-          reader.onload = function () {
-            const base64Image = reader.result;
-            localStorage.setItem('userImage', base64Image);
-          };
-
-          reader.readAsDataURL(file);
-        }
-      });
-
-    })
+        reader.readAsDataURL(file);
+      }
+    });
   </script>
+
   <!-- Form starts -->
   <!-- 
   
