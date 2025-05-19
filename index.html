@@ -110,7 +110,7 @@
         return;
       }
       save.addEventListener('click', function () {
-        // Save text inputs
+
         const userName = name.value;
         const userEmail = email.value;
         const userGit = git.value;
@@ -119,7 +119,6 @@
         localStorage.setItem('userEmail', userEmail);
         localStorage.setItem('userGit', userGit);
 
-        // Save image input
         if (image.files.length > 0) {
           const file = image.files[0];
           const reader = new FileReader();
