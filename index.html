@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Conference ticket generator</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: rgb(54, 32, 75);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blank {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 300px;
+
+    }
+
+    h1 {
+      width: 500px;
+      text-align: center;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    input {
+      background: none;
+      border: 2px white solid;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    a {
+      width: 300px;
+    }
+
+    button {
+      background-color: rgb(205, 97, 97);
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
+      border: none;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo">
+    <img src="./assets/images/logo-mark.svg" alt="">
+    <h3>Coding Conf</h3>
+  </div>
+  <h1>Your Journey to Coding Conf 2025 Starts Here!</h1>
+  <p>Secure your spot at next year's biggest coding conference.</p>
+  <div class="blank">
+    <div class="photo">
+      <p>Upload Avatar</p>
+      <input type="file" id="imageUpload">
+      <p style="font-size: 10px;">Upload your photo (JPG or PNG, max size: 500KB).</p>
+    </div>
+    <div class="name">
+      <p>Full Name</p>
+      <input type="text" placeholder="Your Name" id="name">
+    </div>
+    <div class="email">
+      <p>Email Address</p>
+      <input type="email" placeholder="example@email.com" id="email">
+    </div>
+    <div class="git">
+      <p>GitHub Username</p>
+      <input type="text" placeholder="@yourusername" id="git">
+    </div>
+    <a href="./ticket.html" target="_blank" id="save"><button id="save">Generate My Ticket</button></a>
+  </div>
+  <script>
+    const image = document.getElementById('imageUpload')
+    const name = document.getElementById('name')
+    const email = document.getElementById('email')
+    const git = document.getElementById('git')
+    const save = document.getElementById('save')
+    save.addEventListener('click', function () {
+      const userName = name.value;
+      const userEmail = email.value;
+      const userGit = git.value;
+      if (!userName || !userEmail || !userGit) {
+        alert("Please fill out all fields!");
+        return;
+      }
+      save.addEventListener('click', function () {
+        // Save text inputs
+        const userName = name.value;
+        const userEmail = email.value;
+        const userGit = git.value;
+
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('userEmail', userEmail);
+        localStorage.setItem('userGit', userGit);
+
+        // Save image input
+        if (image.files.length > 0) {
+          const file = image.files[0];
+          const reader = new FileReader();
+
+          reader.onload = function () {
+            const base64Image = reader.result;
+            localStorage.setItem('userImage', base64Image);
+          };
+
+          reader.readAsDataURL(file);
+        }
+      });
+
+    })
+  </script>
+  <!-- Form starts -->
+  <!-- 
+  
+
+  
+
+  Upload Avatar
+  Drag and drop or click to upload
+  
+
+  Full Name
+
+  Email Address
+  example@email.com
+
+  GitHub Username
+  @yourusername -->
+
+  <!-- Generate My Ticket -->
+
+  <!-- Form ends -->
+
+  <!-- Generated tickets starts -->
+
+  <!-- Congrats, Full Name! Your ticket is ready. -->
+
+  <!-- We've emailed your ticket to Email Address and will send updates in the run up to the event.
+
+  Coding Conf
+  
+
+  Generated tickets ends -->
+</body>
+
+</html>

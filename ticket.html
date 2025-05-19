@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        font-family: sans-serif;
+    }
+
+    body {
+        background-color: rgb(54, 32, 75);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+
+    h1 {
+        width: 500px;
+        text-align: center;
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    #result {
+        background-image: url(./assets/images/pattern-ticket.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 500px;
+        height: 200px;
+
+    }
+</style>
+
+<body>
+    <div class="logo">
+        <img src="./assets/images/logo-mark.svg" alt="">
+        <h3>Coding Conf</h3>
+    </div>
+    <div id="text">
+
+    </div>
+    <div id="result">
+        <div class="orig" style="margin-left: -230px; display: flex;
+        flex-direction: column; justify-content: center; align-items: center; gap: 0;">
+            <div class="logo">
+                <img src="./assets/images/logo-mark.svg" alt="">
+                <h3>Coding Conf</h3>
+            </div>
+            <p>Jan 31, 2025 / Austin, TX</p>
+        </div>
+        <div class="dom">
+            <div id="all"
+                style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        let main = document.getElementById('text')
+        let all = document.getElementById('all')
+        const userName = localStorage.getItem('userName');
+        const userEmail = localStorage.getItem('userEmail');
+        const userGit = localStorage.getItem('userGit');
+        const userImage = localStorage.getItem('userImage');
+        main.innerHTML = `<h1 style = 'margin-left:150px'>Congrats, ${userName}! Your ticket is ready.</h1> <p>We've emailed your ticket to ${userEmail} and will send updates in the run up to the event.
+</p>`
+        all.innerHTML = `<div style = 'display:flex; align-items:center; gap:20px; margin-left:-100px; justify-content:center'><img src = '${userImage}' style = 'width:70px; border-radius:10px'> <div><h3>${userName}</h3><p>${userGit}</p></div></div>`
+    </script>
+</body>
+
+</html>
